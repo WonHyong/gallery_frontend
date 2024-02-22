@@ -17,12 +17,13 @@ export default function PhotoItem({ width, height, imageProps: { alt, style, ...
 
     return (
         <div style={{ width: width, height: height }}>
-            { loading && <Skeleton height='100%' animation='wave'/> }
+            { loading && <Skeleton component="div" variant="rectangular" height='100%'/> }
             <img 
                 alt={alt}
-                style={{ ...style, width: "100%", padding: 0, display: loading? 'none' : 'block'}} 
+                style={{ ...style, width: "100%", padding: 0,}} 
                 onLoad={handleOnLoad}
-                {...restImageProps}/>
+                {...restImageProps}
+            />
         </div>
     );
 }
