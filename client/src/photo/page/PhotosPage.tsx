@@ -56,13 +56,18 @@ export default function PhotosPage() {
             { threshold: 0.5 }
         );
 
+        
+
         if (observerTarget.current) {
             observer.observe(observerTarget.current);
         }
 
+        // TODO: ???? why assign outside of return
+        const target = observerTarget.current;
+
         return () => {
-            if (observerTarget.current) {
-                observer.unobserve(observerTarget.current);
+            if (target) {
+                observer.unobserve(target);
             }
         };
     }, [currentPage, loading, observerTarget]);

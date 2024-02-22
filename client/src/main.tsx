@@ -19,7 +19,6 @@ const theme = createTheme({
 const router = createBrowserRouter([
   {
     path: "/",
-    // element: <ImageUploader />,
     element: <PhotosPage />,
   },
   {
