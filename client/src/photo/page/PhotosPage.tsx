@@ -3,7 +3,7 @@ import photoApi from '../api/PhotoApi';
 import PhotoList from '../component/PhotoList';
 import { Box, CircularProgress, Drawer } from '@mui/material';
 import { Photo } from '../type/Photo';
-import SearchAppBar from '../component/SearchAppBar';
+import SearchAppBar from '../../common/component/SearchAppBar';
 import ImageUploadButton from '../component/ImageUploadButton';
 
 export default function PhotosPage() {
@@ -65,11 +65,11 @@ export default function PhotosPage() {
                 observer.unobserve(observerTarget.current);
             }
         };
-    }, [currentPage, observerTarget]);
+    }, [currentPage, loading, observerTarget]);
     
     return (
         <>
-            <SearchAppBar title='logallery' onMenuButtonClick={toggleDrawer(true)}/>
+            <SearchAppBar title='logallery' titleLink='/' onMenuButtonClick={toggleDrawer(true)}/>
 
             {/* ONLY FOR MOBILE AND TABLET, HAVE TO MAKE FOR PC */}
             <Drawer

@@ -3,7 +3,6 @@ import Dropzone, {
   IDropzoneProps,
 } from 'react-dropzone-uploader'
 import { useState } from 'react';
-import api from '../../common/api/api';
 import photoApi from '../api/PhotoApi';
 
 export default function ImageUploader() {

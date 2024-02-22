@@ -1,4 +1,4 @@
-import { alpha, InputBase, AppBar, Typography, styled, Toolbar, IconButton, Link } from "@mui/material";
+import { alpha, InputBase, AppBar, styled, Toolbar, IconButton, Link } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -47,10 +47,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 interface Props {
     onMenuButtonClick: React.MouseEventHandler<HTMLButtonElement>;
+    titleLink: string;
     title: string;
 }
 
-export default function SearchAppBar({onMenuButtonClick, title}: Props) {
+export default function SearchAppBar({onMenuButtonClick, title, titleLink}: Props) {
     return (
         <>
             <AppBar sx={{ backgroundColor: 'white', color: 'black', position: 'fixed' }}>
@@ -66,7 +67,7 @@ export default function SearchAppBar({onMenuButtonClick, title}: Props) {
                         <MenuIcon />
                     </IconButton>
 
-                    <Link href="/" variant="h5" underline="none" sx={{ flexGrow: 1, }}>
+                    <Link href={titleLink} variant="h5" underline="none" sx={{ flexGrow: 1, }}>
                         {title}
                     </Link>
 
