@@ -17,7 +17,7 @@ export default function PhotosPage() {
         async function loadPhotos() {
             setLoading(true);
             try {
-                const response = await photoApi.getAll(currentPage);
+                const response = await photoApi.getPhotos(currentPage);
 
                 if (currentPage === 1) {
                     setPhotos(response.data);

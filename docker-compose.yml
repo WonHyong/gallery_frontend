@@ -1,30 +1,11 @@
 version: "3.7"
 
 services:
-  nginx:
+  nginx-client:
     restart: always
-    container_name: nginx
+    container_name: nginx-client
     build:
-      context: ./nginx
+      context: .
       dockerfile: Dockerfile
     ports:
       - "80:80"
-    networks:
-      - frontend
-    
-  client:
-    container_name: client
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    expose:
-      - 3000
-    volumes:
-      - "./client/:/app"
-      - "/app/node_modules"
-    networks:
-      - frontend
-
-networks: 
-  frontend:
-    driver: bridge
