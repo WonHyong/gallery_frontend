@@ -6,7 +6,15 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import PhotosPage from './photo/page/PhotosPage';
+import { createTheme, ThemeProvider } from '@mui/material';
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#000000'
+    },
+  }
+})
 
 const router = createBrowserRouter([
   {
@@ -14,13 +22,20 @@ const router = createBrowserRouter([
     // element: <ImageUploader />,
     element: <PhotosPage />,
   },
+  {
+    path: '/about',
+    element: <p>ABOUT</p>,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <main>
-      <RouterProvider router={router} />
-    </main>
-    <footer></footer>
+    <ThemeProvider theme={theme}>
+      <main>
+        <RouterProvider router={router} />
+      </main>
+      <footer>
+      </footer>
+    </ThemeProvider>
   </React.StrictMode>,
 )

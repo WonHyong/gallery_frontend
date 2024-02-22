@@ -1,4 +1,4 @@
-import { alpha, InputBase, AppBar, Typography, styled, Toolbar, IconButton } from "@mui/material";
+import { alpha, InputBase, AppBar, Typography, styled, Toolbar, IconButton, Link } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -45,12 +45,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function SearchAppBar() {
+interface Props {
+    onMenuButtonClick: React.MouseEventHandler<HTMLButtonElement>;
+    title: string;
+}
+
+export default function SearchAppBar({onMenuButtonClick, title}: Props) {
     return (
         <>
-            <AppBar sx={{ backgroundColor: 'white', color: 'black', position: 'fixed'}}>
+            <AppBar sx={{ backgroundColor: 'white', color: 'black', position: 'fixed' }}>
                 <Toolbar>
                     <IconButton
+                        onClick={onMenuButtonClick}
                         size="large"
                         edge="start"
                         color="inherit"
@@ -59,20 +65,17 @@ export default function SearchAppBar() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                    >
-                        loGallery
+
+                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                        {title}
                     </Typography>
+
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
                         <StyledInputBase
-                            placeholder="Search…"
+                            placeholder="Search tags…"
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>

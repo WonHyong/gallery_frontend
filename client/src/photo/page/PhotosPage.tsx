@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import photoApi from '../api/PhotoApi';
 import PhotoList from '../component/PhotoList';
-import { CircularProgress } from '@mui/material';
+import { Box, CircularProgress, Drawer } from '@mui/material';
 import { Photo } from '../type/Photo';
 import SearchAppBar from '../component/SearchAppBar';
 import ImageUploadButton from '../component/ImageUploadButton';
@@ -10,8 +10,22 @@ export default function PhotosPage() {
     const [photos, setPhotos] = useState<Photo[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(false);
+    const [drawerOpened, setDrawerOpened] = useState(false);
     
     const observerTarget = useRef(null);
+
+    const toggleDrawer =
+        (open: boolean) =>
+        (event: React.KeyboardEvent | React.MouseEvent) => {
+        if (
+            event.type === 'keydown' &&
+            ((event as React.KeyboardEvent).key === 'Tab' ||
+            (event as React.KeyboardEvent).key === 'Shift')
+        ) {
+            return;
+        }
+        setDrawerOpened(open);
+        };
 
     useEffect(() => {
         async function loadPhotos() {
@@ -55,7 +69,16 @@ export default function PhotosPage() {
     
     return (
         <>
-            <SearchAppBar />
+            <SearchAppBar title='logallery' onMenuButtonClick={toggleDrawer(true)}/>
+            <Drawer
+                anchor='left'
+                open={drawerOpened}
+                onClose={toggleDrawer(false)}
+            >
+                <Box sx={{ width: 250 }}>
+                    Drawer
+                </Box>
+            </Drawer>
             <PhotoList photos={photos} />
             {loading && <div className='center-page'><CircularProgress /></div>}
             <ImageUploadButton />
