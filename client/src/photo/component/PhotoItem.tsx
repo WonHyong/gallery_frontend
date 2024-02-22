@@ -11,17 +11,13 @@ interface Props {
 export default function PhotoItem({ width, height, imageProps: { alt, style, ...restImageProps } }: Props) {
     const [loading, setLoading] = useState(true);
 
-    const handleOnLoad = () => {
-        setLoading(false);
-    }
-
     return (
-        <div style={{ width: width, height: height }}>
-            { loading && <Skeleton component="div" variant="rectangular" height='100%'/> }
+        <div style={{ ...style, width: width, height: height, borderRadius: '10px' }}>
+            { loading && <Skeleton variant="rounded" height='100%'/> }
             <img 
                 alt={alt}
-                style={{ ...style, width: "100%", padding: 0,}} 
-                onLoad={handleOnLoad}
+                style={{ ...style, width: "100%", borderRadius: 'inherit'}}
+                onLoad={() => setLoading(false)}
                 {...restImageProps}
             />
         </div>

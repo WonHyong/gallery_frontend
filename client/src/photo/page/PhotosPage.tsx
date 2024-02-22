@@ -53,7 +53,7 @@ export default function PhotosPage() {
                     loadPhotos();
                 }
             },
-            { threshold: 0.3 }
+            { threshold: 0.5 }
         );
 
         if (observerTarget.current) {
@@ -70,6 +70,8 @@ export default function PhotosPage() {
     return (
         <>
             <SearchAppBar title='logallery' onMenuButtonClick={toggleDrawer(true)}/>
+
+            {/* ONLY FOR MOBILE AND TABLET, HAVE TO MAKE FOR PC */}
             <Drawer
                 anchor='left'
                 open={drawerOpened}

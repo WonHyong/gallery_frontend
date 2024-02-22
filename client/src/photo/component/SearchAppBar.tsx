@@ -66,9 +66,9 @@ export default function SearchAppBar({onMenuButtonClick, title}: Props) {
                         <MenuIcon />
                     </IconButton>
 
-                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                    <Link href="/" variant="h5" underline="none" sx={{ flexGrow: 1, }}>
                         {title}
-                    </Typography>
+                    </Link>
 
                     <Search>
                         <SearchIconWrapper>
