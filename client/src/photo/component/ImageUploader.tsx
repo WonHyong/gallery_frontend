@@ -16,9 +16,18 @@ export default function ImageUploader() {
   const handleSubmit: IDropzoneProps['onSubmit'] = (files, allFiles) => {
     console.log(files.map(f => f.file));
 
+    const formData = new FormData();
+    Array.from(files.map(f => f.file)).forEach((el) => {
+      formData.append('photos', el);
+    })
+
     async function uploadPhotos(photos: File[]) {
+      const formData = new FormData();
+      Array.from(photos).forEach((el) => {
+        formData.append('photos', el);
+      });
         try {
-          const response = await photoApi.uploadPhotos(photos);
+          const response = await photoApi.uploadPhotos(formData);
           console.log('upload: ', response);
         } catch (e) {
           console.error(e);

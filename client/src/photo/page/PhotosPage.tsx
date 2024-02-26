@@ -8,8 +8,10 @@ import ImageUploadButton from '../component/ImageUploadButton';
 
 export default function PhotosPage() {
     const [photos, setPhotos] = useState<Photo[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [isLast, setIsLast] = useState(false);
     const [drawerOpened, setDrawerOpened] = useState(false);
     
     const observerTarget = useRef(null);
@@ -31,7 +33,9 @@ export default function PhotosPage() {
         async function loadPhotos() {
             setLoading(true);
             try {
-                const response = await photoApi.getPhotos(currentPage);
+                const response = await photoApi.getPhotos(currentPage, 10);
+
+                console.log('load photos', response);
 
                 if (currentPage === 1) {
                     setPhotos(response.data);
@@ -40,8 +44,13 @@ export default function PhotosPage() {
                 }
 
                 setCurrentPage((currentPage) => currentPage + 1);
+
+                if (response.data.length < 20) {
+                    setIsLast(true);
+                }
             } catch (e) {
                 console.error(e);
+                setError(true);
             } finally {
                 setLoading(false);
             }
@@ -49,7 +58,7 @@ export default function PhotosPage() {
         
         const observer = new IntersectionObserver(
             entries => {
-                if (entries[0].isIntersecting && !loading) {
+                if (entries[0].isIntersecting && !loading && !isLast && !error) {
                     loadPhotos();
                 }
             },

@@ -23,7 +23,7 @@ export default function PhotoList({ photos }: PhotoListProps) {
 
     const slides = photos.map((item) => (
         {
-            src: item.download_url,
+            src: item.url,
             width: item.width,
             height: item.height
         }
