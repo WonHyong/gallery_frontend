@@ -37,7 +37,7 @@ export default function PhotosPage() {
 
                 console.log('load photos', response);
 
-                if (currentPage === 1) {
+                if (currentPage === 0) {
                     setPhotos(response.data);
                 } else {
                     setPhotos((photos) => [...photos, ...response.data]);
@@ -45,7 +45,7 @@ export default function PhotosPage() {
 
                 setCurrentPage((currentPage) => currentPage + 1);
 
-                if (response.data.length < 20) {
+                if (response.data.length < 10) {
                     setIsLast(true);
                 }
             } catch (e) {
