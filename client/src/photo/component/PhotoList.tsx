@@ -35,7 +35,6 @@ export default function PhotoList({ photos }: PhotoListProps) {
                 layout="masonry"
                 photos={slides}
                 spacing={15}
-                columns={2} // TODO: Only for mobile, Have to define for tablet and pc.
                 onClick={({ index: current }) => setIndex(current)}
                 renderPhoto={renderPhoto}
             />
