@@ -1,15 +1,17 @@
-import { Photo } from "../type/Photo";
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { Download, Zoom } from "yet-another-react-lightbox/plugins";
-import PhotoAlbum, { RenderPhoto } from "react-photo-album";
+import PhotoAlbum, { RenderPhoto} from "react-photo-album";
 import PhotoItem from "./PhotoItem";
+import { Photo } from "../type/Photo";
 
-const renderPhoto: RenderPhoto = ({ layout, imageProps: { alt, style, ...restImageProps } }) => (
+
+const renderPhoto: RenderPhoto = ({ photo, layout, imageProps: { alt, style, ...restImageProps } }) => (
     <PhotoItem 
         width={layout.width} 
-        height={layout.height} 
+        height={layout.height}
+        photo={photo}
         imageProps={{alt, style, ...restImageProps}}
     />
 );
@@ -25,7 +27,8 @@ export default function PhotoList({ photos }: PhotoListProps) {
         {
             src: item.url,
             width: item.width,
-            height: item.height
+            height: item.height,
+            like: 13,
         }
     ));
 
@@ -35,6 +38,7 @@ export default function PhotoList({ photos }: PhotoListProps) {
                 layout="masonry"
                 photos={slides}
                 spacing={15}
+                columns={2}
                 onClick={({ index: current }) => setIndex(current)}
                 renderPhoto={renderPhoto}
             />

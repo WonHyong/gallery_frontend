@@ -54,7 +54,7 @@ interface Props {
 export default function SearchAppBar({onMenuButtonClick, title, titleLink}: Props) {
     return (
         <>
-            <AppBar sx={{ backgroundColor: 'white', color: 'black', position: 'fixed' }}>
+            <AppBar sx={{ backgroundColor: 'white', color: 'black', position: 'fixed', }}>
                 <Toolbar>
                     <IconButton
                         onClick={onMenuButtonClick}
