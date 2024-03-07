@@ -45,9 +45,9 @@ export default function ImageUploader() {
       accept="image/*,video/*"
       inputContent={(_files, { reject }) => (reject ? 'Image and video files only' : 'Upload Files')}
       styles={{
-        dropzone: { color: 'inherit' },
+        dropzone: { color: 'inherit', width: '100%', height: '100%' },
         dropzoneReject: { borderColor: 'red', backgroundColor: '#DAA' },
-        inputLabel: (_files, { reject }) => (reject ? { color: 'red' } : { color: 'inherit' }),
+        inputLabel: (_files, { reject }) => (reject ? { color: 'red' } : { color: 'inherit', textDecoration: 'underline' }),
         submitButton: { backgroundColor: 'black' },
         inputLabelWithFiles: { backgroundColor: 'black', color: 'white', },
       }}
