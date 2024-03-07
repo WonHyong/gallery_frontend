@@ -47,11 +47,8 @@ export default function PhotoItem({ photo, width, height, imageProps: { alt, sty
 
             <div style={{position: 'absolute', zIndex: 100, top: '5%', left: '85%'}}>
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <IconButton onClick={handleOnLikeClicked} size="large" style={{padding: 0,}}>
-                        { isLiked? 
-                            <FavoriteOutlinedIcon style={{color: 'red', fontSize: 35}}/> : 
-                            <FavoriteBorderOutlinedIcon style={{color: 'silver', fontSize: 30}}/>}
-                        
+                    <IconButton onClick={handleOnLikeClicked} size="large" style={{padding: 0,}}> 
+                            <FavoriteOutlinedIcon style={{color: 'red', fontSize: 35}}/>
                     </IconButton>
                     <p style={{
                         textAlign: 'center', 
