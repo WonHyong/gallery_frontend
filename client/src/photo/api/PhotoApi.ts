@@ -20,6 +20,9 @@ const photoApi = {
     },
     deletePhoto(id: number) {
         return api.delete<string>(`/${id}`);
+    },
+    likePhoto(id: number) {
+        return api.put<number>(`/photos/${id}/likes`);
     }
 }
 

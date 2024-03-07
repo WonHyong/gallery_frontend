@@ -28,7 +28,8 @@ export default function PhotoList({ photos }: PhotoListProps) {
             src: item.url,
             width: item.width,
             height: item.height,
-            like: 13,
+            like: item.like,
+            id: item.id,
         }
     ));
 
