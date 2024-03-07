@@ -55,10 +55,10 @@ export default function PhotoItem({ photo, width, height, imageProps: { alt, sty
                     <p style={{
                         textAlign: 'center', 
                         padding: 0, margin: 0, 
-                        color: 'black', 
+                        color: 'silver', 
                         fontWeight: '10px',
                         fontSize: '20px',
-                        textShadow: '-0.5px 0 silver, 0 0.5px silver, 0.5px 0 silver, 0 -0.5px silver'}}>
+                        textShadow: '-0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black'}}>
                         {like}
                     </p>
                 </div>
