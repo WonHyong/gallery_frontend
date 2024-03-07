@@ -2,7 +2,7 @@ export interface Photo {
     id: number;
     width: number;
     height: number;
-    like: number;
+    likes: number;
     url: string;
     thbUrl: string;
 }

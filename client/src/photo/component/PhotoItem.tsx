@@ -14,7 +14,6 @@ interface Props {
 
 export default function PhotoItem({ photo, width, height, imageProps: { alt, style, ...restImageProps } }: Props) {
     const [loading, setLoading] = useState(true);
-    const [isLiked, setIsLiked] = useState(false);
     const [like, setLike] = useState(photo.like);
 
     const handleOnLikeClicked = () => {
@@ -22,13 +21,16 @@ export default function PhotoItem({ photo, width, height, imageProps: { alt, sty
             let result = await photoApi.likePhoto(photo.id);
             if (result.status === 200) {
                 console.log('like success');
-                setIsLiked(true);
                 setLike(result.data);
             }
         }
         
         likePhoto();
     };
+
+    const handleOnImageLoaded = () => {
+        setLoading(false);
+    }
 
     return (
         <div style={{ ...style, width: width, height: height, 
@@ -41,7 +43,7 @@ export default function PhotoItem({ photo, width, height, imageProps: { alt, sty
             <img 
                 alt={alt}
                 style={{ ...style, width: width, height:height, borderRadius: 'inherit'}}
-                onLoad={() => setLoading(false)}
+                onLoad={handleOnImageLoaded}
                 {...restImageProps}
             />
 
