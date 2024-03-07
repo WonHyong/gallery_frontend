@@ -1,10 +1,8 @@
 import { useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-import { Download, Zoom } from "yet-another-react-lightbox/plugins";
 import PhotoAlbum, { RenderPhoto} from "react-photo-album";
 import PhotoItem from "./PhotoItem";
 import { Photo } from "../type/Photo";
+import { Box, Modal } from "@mui/material";
 
 
 const renderPhoto: RenderPhoto = ({ photo, layout, imageProps: { alt, style, ...restImageProps } }) => (
@@ -15,6 +13,22 @@ const renderPhoto: RenderPhoto = ({ photo, layout, imageProps: { alt, style, ...
         imageProps={{alt, style, ...restImageProps}}
     />
 );
+
+const style = {
+    position: 'absolute' as const,
+    top: '50%',
+    left: '50%',
+    width: '80%',
+    height: '80%',
+    transform: 'translate(-50%, -50%)',
+    bgcolor: 'background.paper',
+    border: '1px solid #000',
+    boxShadow: 24,
+    p: 4,
+    padding: 0,
+    borderRadius: '20px',
+    objectFit: 'cover',
+  };
 
 interface PhotoListProps {
     photos: Photo[];
@@ -33,6 +47,10 @@ export default function PhotoList({ photos }: PhotoListProps) {
         }
     ));
 
+    const calculateImgSize = () => {
+
+    }
+
     return (
         <section>
             <PhotoAlbum
@@ -43,13 +61,20 @@ export default function PhotoList({ photos }: PhotoListProps) {
                 onClick={({ index: current }) => setIndex(current)}
                 renderPhoto={renderPhoto}
             />
-            <Lightbox
-                slides={slides}
-                plugins={[Zoom, Download]}
+            <Modal
                 open={index >= 0}
-                index={index}
-                close={() => setIndex(-1)}
-            />
+                onClose={() => setIndex(-1)}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <div>
+                    {(index >= 0) &&
+                        <Box sx={style}>
+                            <img src={slides[index].src} alt='NO IMAGE' width='100%' height='100%' style={{borderRadius: 'inherit', }}/>
+                        </Box>
+                    }
+                </div>
+            </Modal>
         </section>
     )
 }
