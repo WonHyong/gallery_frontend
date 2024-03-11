@@ -4,7 +4,7 @@ import PhotoList from '../component/PhotoList';
 import { Box, CircularProgress, Divider, Drawer, Link, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { Photo } from '../type/Photo';
 import SearchAppBar from '../../common/component/SearchAppBar';
-import ImageUploadButton from '../component/ImageUploadButton';
+import ImageUploadButton from '../component/ImageUploader';
 import InboxIcon from '@mui/icons-material/Inbox';
 import MailIcon from '@mui/icons-material/Mail';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -122,8 +122,6 @@ export default function PhotosPage() {
     return (
         <>
             <SearchAppBar title='logallery' titleLink='/' onMenuButtonClick={toggleDrawer(true)} />
-
-            {/* ONLY FOR MOBILE AND TABLET, HAVE TO MAKE FOR PC */}
             <Drawer
                 anchor='left'
                 open={drawerOpened}

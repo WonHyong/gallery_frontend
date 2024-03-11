@@ -47,10 +47,6 @@ export default function PhotoList({ photos }: PhotoListProps) {
         }
     ));
 
-    const calculateImgSize = () => {
-
-    }
-
     return (
         <section>
             <PhotoAlbum
