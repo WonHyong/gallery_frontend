@@ -11,6 +11,8 @@ const fabStyle = {
     bottom: 20,
     left: 'auto',
     position: 'fixed',
+    width: '70px',
+    height: '70px',
 };
 
 interface HideOnScrollProps {

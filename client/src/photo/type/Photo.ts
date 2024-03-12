@@ -5,4 +5,7 @@ export interface Photo {
     likes: number;
     url: string;
     thbUrl: string;
+    gpsLatitude: number;
+    gpsLongitude: number;
+    uploadDate;
 }

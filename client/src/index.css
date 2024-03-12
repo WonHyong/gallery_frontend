@@ -5,6 +5,7 @@ main,
 .container,
 .center-page {
   height: 100%;
+  background-color: silver;
 }
 
 .center-page {

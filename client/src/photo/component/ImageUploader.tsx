@@ -5,7 +5,8 @@ import HideFab from '../../common/component/HideFab';
 import { useRef, useState } from 'react';
 import photoApi from '../api/PhotoApi';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import { Button, CircularProgress, Grid, Typography } from '@mui/material';
+import { Button, CircularProgress, Grid, IconButton, Typography } from '@mui/material';
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import { BASE_API_URL } from '../../common/api/api';
 
 const modalBoxStyle = {
@@ -24,11 +25,12 @@ const modalBoxStyle = {
 	borderRadius: '10px',
 };
 
+const MAX_UPLOAD_NUM = 99;
+
 export default function ImageUploadButton() {
 	const [modalOpen, setModalOpen] = useState(false);
 
 	const [files, setFiles] = useState([]);
-	const [previews, setPreviews] = useState([]);
 	const [uploadingCnt, setUploadingCnt] = useState(0);
 
 	const handleOpen = () => setModalOpen(true);
@@ -43,6 +45,10 @@ export default function ImageUploadButton() {
 	}
 
 	const addPhotos = (event) => {
+		if (files.length >= MAX_UPLOAD_NUM) {
+			alert(`최대 ${MAX_UPLOAD_NUM}개 업로드 가능`);
+			return;
+		}
 		const mFiles = event.target.files;
 		const mPreviews = [];
 
@@ -53,12 +59,6 @@ export default function ImageUploadButton() {
 		}
 
 		setFiles((files) => [...files, ...mFiles]);
-		setPreviews((previews) => [...previews, ...mPreviews]);
-	}
-
-	const removePhoto = (idx) => {
-		setFiles(files.splice(idx, 1));
-		setPreviews(previews.splice(idx, 1));
 	}
 
 	const uploadPhoto = async () => {
@@ -78,7 +78,6 @@ export default function ImageUploadButton() {
 			console.error(e);
 		} finally {
 			setFiles([]);
-			setPreviews([]);
 		}
 
 		setModalOpen(false);
@@ -94,28 +93,16 @@ export default function ImageUploadButton() {
 				<Box sx={modalBoxStyle}>
 					<Box
 						onClick={selectPhotos}
-						sx={{ border: '3px dotted silver', width: '100%', height: ((files.length === 0) ? '100%' : '20%'), display: 'flex', flexDirection: 'column' }}
+						sx={{ border: '3px dotted silver', width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}
 					>
-						<CloudUploadOutlinedIcon sx={{ fontSize: ((files.length === 0) ? '800%' : '200%'), margin: 'auto' }} />
+						<Typography color={'silver'}>최대 {MAX_UPLOAD_NUM}개 | 10mb</Typography>
+						{(files.length === 0)?
+							<CloudUploadOutlinedIcon sx={{ fontSize:'800%', margin: 'auto' }} /> :
+							<Typography variant='h3' margin={'auto'}>{files.length}개</Typography>
+						}
 						<input type='file' accept='image/*' multiple ref={fileInput} onChange={addPhotos} style={{ display: 'none' }} />
 					</Box>
-					{(files.length !== 0) &&
-						<Box sx={{ flexGrow: 1, margin: '5px' }}>
-							<Grid container spacing={2}>
-								{previews.map((item, idx) => {
-									return (
-										<Grid item xs={3} sx={{ borderRadius: '10px', margin: '3px'}}>
-											<img src={item} width={100} height={100} style={{borderRadius: 'inherit'}}/>
-										</Grid>
-									)
-								})}
-							</Grid>
-							<Button variant='contained' onClick={uploadPhoto}>
-								<Typography variant='h6'>업로드</Typography>
-							</Button>
-						</Box>
-					}
-
+					{(files.length !== 0) && <Button variant='contained' onClick={uploadPhoto} sx={{ width: '100%', }}>UPLOAD</Button>}
 				</Box>
 			</Modal>
 		</>
