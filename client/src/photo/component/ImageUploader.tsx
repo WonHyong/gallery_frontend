@@ -34,7 +34,10 @@ export default function ImageUploadButton() {
 	const [uploadingCnt, setUploadingCnt] = useState(0);
 
 	const handleOpen = () => setModalOpen(true);
-	const handleClose = () => setModalOpen(false);
+	const handleClose = () => {
+		setFiles([]);
+		setModalOpen(false);
+	}
 
 	const fileInput = useRef(null);
 
