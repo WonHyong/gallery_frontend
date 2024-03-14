@@ -73,8 +73,8 @@ export default function ImageUploadButton() {
 				formData.append('photo', file);
 				const response = await photoApi.uploadPhotos(formData);
 				if (response.status === 200) {
-					console.log('remain upload: ', uploadingCnt);
 					setUploadingCnt((cnt) => cnt - 1);
+					console.log('remain upload: ', uploadingCnt);
 				}
 			}
 		} catch (e) {

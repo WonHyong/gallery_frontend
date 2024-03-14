@@ -70,18 +70,18 @@ export default function PhotosPage() {
             setLoading(true);
             try {
                 const response = await photoApi.getPhotos(currentPage, 10);
-
+                
                 console.log('load photos', response);
 
                 if (currentPage === 0) {
-                    setPhotos(response.data);
+                    setPhotos(response.data.content);
                 } else {
-                    setPhotos((photos) => [...photos, ...response.data]);
+                    setPhotos((photos) => [...photos, ...response.data.content]);
                 }
 
                 setCurrentPage((currentPage) => currentPage + 1);
 
-                if (response.data.length < 10) {
+                if (response.data.content.length < 10) {
                     setIsLast(true);
                 }
             } catch (e) {
@@ -130,7 +130,7 @@ export default function PhotosPage() {
             <PhotoList photos={photos} />
             {loading && <div className='center-page'><CircularProgress /></div>}
             <ImageUploadButton />
-            <div ref={observerTarget} style={{ height: '1px' }}></div>
+            {!loading && <div ref={observerTarget} style={{ height: '1px' }}></div>}
         </>
     );
 }
