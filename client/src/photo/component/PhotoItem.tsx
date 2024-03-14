@@ -1,4 +1,4 @@
-import { IconButton, Skeleton } from "@mui/material";
+import { IconButton, Skeleton, Typography } from "@mui/material";
 import { useState } from "react";
 import { ImageElementAttributes, Photo } from "react-photo-album";
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
@@ -21,6 +21,7 @@ export default function PhotoItem({ photo, width, height, imageProps: { alt, sty
             let result = await photoApi.likePhoto(photo.id);
             if (result.status === 200) {
                 console.log('like success');
+                console.log('photo: ', photo.hashTags);
                 setLike(result.data);
             }
         }
@@ -49,6 +50,9 @@ export default function PhotoItem({ photo, width, height, imageProps: { alt, sty
 
             <div style={{position: 'absolute', zIndex: 100, top: '5%', left: '90%'}}>
                 <div style={{display: 'flex', flexDirection: 'column'}}>
+                    {photo.hashTags && photo.hashTags.map((tag) => {
+                        return <Typography color={'red'}>{tag.tag}</Typography>
+                    })}
                     <IconButton onClick={handleOnLikeClicked} size="large" style={{padding: 0,}}> 
                             <FavoriteOutlinedIcon style={{color: 'red', fontSize: 30}}/>
                     </IconButton>

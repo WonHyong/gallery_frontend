@@ -43,6 +43,7 @@ export default function PhotoList({ photos }: PhotoListProps) {
             width: item.width,
             height: item.height,
             like: item.likes,
+            hashTags: item.hashTags,
             id: item.id,
         }
     ));
