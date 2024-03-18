@@ -1,3 +1,5 @@
+import { Tag } from "./Tag";
+
 export interface Photo {
     id: number;
     width: number;
@@ -5,7 +7,7 @@ export interface Photo {
     likes: number;
     url: string;
     thbUrl: string;
-    hashTags: [];
+    hashTags: Tag[];
     gpsLatitude: number;
     gpsLongitude: number;
     uploadDate;

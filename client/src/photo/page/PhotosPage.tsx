@@ -121,7 +121,7 @@ export default function PhotosPage() {
         <>
             <SearchAppBar title='GALLERY' titleLink='/' onMenuButtonClick={toggleDrawer(true)} />
             <Drawer
-                anchor='left'
+                anchor='right'
                 open={drawerOpened}
                 onClose={toggleDrawer(false)}
             >

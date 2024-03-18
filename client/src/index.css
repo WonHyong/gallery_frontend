@@ -5,10 +5,17 @@ main,
 .container,
 .center-page {
   height: 100%;
+  padding: 3px;
 }
 
 .center-page {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.gugi-regular {
+  font-family: "Gugi", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }

@@ -54,8 +54,9 @@ interface Props {
 export default function SearchAppBar({onMenuButtonClick, title, titleLink}: Props) {
     return (
         <>
-            <AppBar sx={{ backgroundColor: 'white', color: 'black', position: 'fixed', padding: '5px'}}>
+            <AppBar sx={{ backgroundColor: 'white', color: 'black', position: 'fixed', boxShadow: 'none', borderBottom: '1px solid silver'}}>
                 <Toolbar>
+                    <a href={titleLink} style={{ textDecoration: 'none', flexGrow: 1, color: 'black' }}><h2 className="gugi-regular">{title}</h2></a>
                     <IconButton
                         onClick={onMenuButtonClick}
                         size="large"
@@ -66,20 +67,6 @@ export default function SearchAppBar({onMenuButtonClick, title, titleLink}: Prop
                     >
                         <MenuIcon />
                     </IconButton>
-
-                    <Link href={titleLink} variant="h5" underline="none" sx={{ flexGrow: 1, }}>
-                        {title}
-                    </Link>
-
-                    <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search tags…"
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
                 </Toolbar>
             </AppBar>
             <Toolbar />
